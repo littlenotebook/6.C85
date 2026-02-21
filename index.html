@@ -4,8 +4,257 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>A2</title>
-    <h1>A2: Exploratory Data Analysis</h1>
-    <h2>Hannah Han - hannahh@mit.edu</h2>
+    <h1>6.C85 A2: Exploratory Data Analysis</h1>
+    <h3>Hannah Han - hannahh@mit.edu</h3>
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <body></body>
+  <body>
+    <h2>Subtheme: Zoning and Housing Supply</h2>
+    <h3>Dataset</h3>
+    <p>
+      The <code>housing_sf_other_w_census_metadata</code> dataset contains
+      measures related to single family housing in each municipality across
+      Greater Boston, Massachusetts, USA. The information includes spatial data
+      and associated numerical data for single-family and other types of housing
+      in zoning districts of the 101 municipalities. This dataset is aggregated
+      data provided by MPAC, American Community Survey, US Census: Decennial
+      Census, and the Massachusetts government. The second dataset contains
+      geographical data about municipal boundaries across Greater Boston. This
+      dataset is provided by MassGIS. I'm interested in these two datasets
+      because together they include both spatial and tabular data. As a whole,
+      it is a large dataset with lots of subcategories to study patterns of
+      housing and zoning that exists in Greater Boston.
+    </p>
+
+    <h3>Analysis Questions</h3>
+    <p>
+      <b
+        >1. In what parts of Greater Boston do most family and non family
+        households live?</b
+      ><br />
+      &emsp; I'm curious about the distribution of family and non family
+      households across Greater Boston. I expect to see that most family
+      households prefer suburban areas (as someone who grew up in a suburban
+      town), while nonfamily households prefer cities because of their vibrant
+      communities.<br />
+      <b>2. Do cities have more housing opportunity than suburban areas?</b
+      ><br />
+      &emsp; Cities are often assumed to have more housing opportunity because
+      of their higher population density, but as someone who grew up in a
+      suburban area, I wonder if that truly is the case. <br />
+      <b
+        >3. Do areas with more elderly have lower proportion of single family
+        households?</b
+      >
+      <br />
+      &emsp; I thought of this question after reading the line "baby boomers
+      looking to downsize" in the article "Living Little" by MPAC. I think a lot
+      of articles I've read so far focus on how hard it is to buy a home for
+      younger people starting out their adult life, so this was another
+      perspective to think about. If the baby boomer generation is inclined to
+      leave zones with a lot of single family housing, then I would expect a
+      lower proportion of single family households in areas with more elderly
+      residents. This result would matter because it would show both young and
+      old are have a need for more affordable middle housing, which should
+      require more attention and action.
+    </p>
+
+    <h3>Discovery and Insights</h3>
+
+    <p>
+      First, to evaluate the quality of the dataset. I constructed a scatter
+      plot of municipal population versus the percentage of land zoned
+      exclusively for single-family housing. I chose a scatter plot because
+      there are over 100 municipalities, which would not fit on either the x
+      axis or the y axis. Therefore, it would save a lot of space to have
+      municipalities as the dots in the plot. I expect to see a negative
+      correclation, as the bigger the population, the less space of single
+      family housing in that munipality.<br />
+
+      <img src="images/A2(1).png" width="600" class="center-image" />
+
+      Two data quality concerns emerge immediately. First, a lot of
+      municipalities display values exceeding 100% for the percentage of land
+      zoned for single-family housing. Given the stated definition of this
+      variable (single-family land area divided by total land are for housing)
+      values above 100% are logically impossible. This suggests that the
+      percentage may have been computed using an incorrect denominator,
+      potentially one that excludes the single-family land component. Because
+      the underlying land-area variables are not available in the dataset, I
+      can't recompute or correct this measure directly. <br />
+      Second, a large portion of municipalities report 0% single-family zoning.
+      While this is theoretically possible, such high frequency of such
+      observations in suburban areas raises concern about misclassification or
+      reporting inconsistencies. Without additional documentation or access to
+      the raw zoning data, it is not possible to determine definitively whether
+      these values reflect true zoning patterns or data limitations. <br />
+      One outlier that catches my eye is the point at (0, 0), which is
+      Burlington. There are obviously people living in Burlington, so there is
+      an obvious error in the data collection. <br />
+      While the percentage of land zoned for single-family housing was intended
+      to serve as a potential explanatory factor in residential patterns, the
+      inconsistencies observed in this variable limit its reliability for causal
+      interpretation. As a result, I would be cautious about my conclusions
+      drawn from using this dataset.
+    </p>
+
+    <p>
+      To address the first question of which parts of Greater Boston contain the
+      largest numbers of family households, I constructed a spatial
+      visualization in which circle size is proportional to the number of family
+      households in each municipality, overlaid on the regional geography.
+      Although we learned from class that humans have a hard time perceiving the
+      exact ratio of circle areas, my motive is to give the reader a general
+      idea of the distribution, not the exact numerical values. Because the
+      dataset includes over 100 municipalities, it would be unreasonable and
+      overwhelming for the reader to comrephend over 100 circles on a map, so I
+      focused on the top ten communities with the highest counts of family
+      households in order to highlight the dominant residential concentrations.
+      <br />
+
+      <img src="images/A2(2).png" width="600" class="center-image" />
+
+      Major cities are labeled in light gray to provide geographic context. The
+      visualization suggests that the municipalities with the largest numbers of
+      family households tend to be located outside the densest urban areas
+      (aside from Boston and Salem). This pattern helps indicate that families
+      prefer less densely populated environments, potentially reflecting
+      preferences for quieter neighborhoods, perceived safety, or access to
+      larger living spaces. However, the presence of Boston and Salem among the
+      top ten suggests that a lot of families choose to reside in urban
+      settings, which may be influenced by factors such as proximity to
+      employment, cultural amenities, or public transportation. Further analysis
+      we can do to better understand which factors are at play in the
+      residential choices of families is to look at the distribution of
+      household income in these ten areas. <br />
+      While I was working with the income data in Tableau, I noticed that the
+      categories weren't named in the same way across the dataset. Some incomes
+      had the prefix with inc-, some prefixed with i-, or something else, which
+      made it hard to order the measures and I needed to reference back and
+      forth to the the dataset. Another inconsitency or possibly misleading
+      element of the data was that the incomes increased on an interval of 5k
+      and then suddenly jumped 25k from 75k to 100k and then another sudden jump
+      by 50k from 150k to 200k. This difference can't be seen at first sight and
+      if shown using a line graph with constant intervals, the readers would
+      easily get misled. Therefore, I didn't choose to use a line graph,
+      instead, I chose to use a density graph. Another advantage of using a
+      density graph was that visually, the dots are less crowded than if using a
+      line graph (10 lines on one graph is overwhelming). However, the trade off
+      is that we can't tell what munipality each data points represents.
+      Moreover, it's hard to tell exactly how much greater or less than each
+      density point is compared to another, because the faint color differences
+      are hard to percieve. Overall, using a density plot allows us tosee which
+      type of income is more common in the top ten municipalities, without
+      needing to know exactly which data point is which municipality. <br />
+
+      <img src="images/A2(3).png" width="600" class="center-image" />
+
+      I observe that a large number of people have higher incomes, with the
+      highest peak at incomes over 200k and another peak at incomes between 75k
+      and 100k. This result aligns with my expectations. As single family homes
+      are more expensive, it makes sense that the top ten municipalities with
+      the most family households would also have higher incomes. However, I also
+      notice that there are still households with lower incomes living in these
+      areas as well. This could be due to a variety of factors, such as
+      affordable housing options within these municipalities, or families
+      prioritizing values that are more important to them than housing cost. It
+      would be interesting to further investigate the specific housing options
+      available in these municipalities and how they cater to different income
+      levels. <br />
+
+      Moving on, let's take a look at the distribution of nonfamily households
+      in a similar manner.
+      <img src="images/A2(4).png" width="600" class="center-image" />
+
+      In contrast to family households, nonfamily households appear to cluster
+      more strongly near urban centers, particularly in municipalities closer to
+      Boston. This spatial pattern is consistent with the hypothesis that
+      nonfamily households may prioritize proximity to employment opportunities,
+      public transportation access, and urban amenities including restaurants
+      and entertainment venues. <br />
+
+      Similar to the previous case, I'm interested in understanding the income
+      distribution of nonfamily households.
+
+      <img src="images/A2(5).png" width="600" class="center-image" />
+
+      In this graph, the main peak is at the income range of 75k to 100k, which
+      is lower than the highest peak for family households. This result is also
+      in line with my expectations, as nonfamily households may include a higher
+      proportion of younger individuals, students, or single professionals who
+      may have lower incomes compared to family households. <br />
+
+      Another interesting observation I have is that the legends show a
+      difference in overall household totals. The range of family households
+      (279–487 among the top municipalities) exceeds that of nonfamily
+      households (189–431), indicating that family households are more numerous
+      overall in the dataset. A comparison of aggregate counts confirms this:
+      there are approximately 15,000 family households compared to just over
+      6,000 nonfamily households. Despite being fewer in number, nonfamily
+      households appear more spatially concentrated, particularly in
+      municipalities adjacent to the urban core. One notable case is Salem,
+      which shows one of the largest total household counts and a relatively
+      balanced distribution between family and nonfamily households. This raises
+      the question of what local factors might contribute to this pattern.
+      <br />
+
+      It would be impossible to analyze every single factor, but one factor that
+      would be interesting to study is age. We can investigate whether
+      municipalities with larger elderly populations also have higher
+      proportions of land zoned for single-family housing. If this relationship
+      exists, it may suggest that areas dominated by single-family housing tend
+      to attract or retain older residents, potentially reflecting life-cycle
+      housing preferences such as homeownership stability or aging in place. Or
+      this relationship is negative, then possible as the "Living Little"
+      suggests, the elderly are sizing down and unable to maintain single family
+      homes. <br />
+
+      <img src="images/A2(6).png" width="600" class="center-image" />
+
+      Municipalities with more single-family housing and older populations may
+      also be more likely to contain established family households, while areas
+      with fewer single-family zones and younger populations may correspond more
+      closely to nonfamily households, including young professionals or
+      students. Although this graph is able to show data for each municipality,
+      it's not the best format to visualize the relationship between elderly
+      population and % single family because the axes are different units and
+      ranges. Instead, I decided to sacrifice municipality level clarity in
+      exchange for a clearer visualization that could tell us something about
+      the correlation we're invesitagting. <br />
+
+      <img src="images/A2(7).png" width="600" class="center-image" />
+
+      Now we can more clearly observe some trends. First, I notice that the
+      porportion of elderly population is mostly underneath the line for higher
+      percentage (150-200%) of single family housing land. The rightmost peak
+      above the line representing high proportion of elderly population and high
+      percentage of single family housing is in Milton, which is also included
+      in the top 10 municipalities for nonfamily households. This data faintly
+      suggests that the elderly population is following the housing trend of
+      nonfamily households.<br />
+
+      Second, there's actually not a very defintive trend at all. As we can see
+      from the up and down of the graph, there are many municipalities with a
+      low percentage of single family housing land and a low proportion of
+      elderly population, or the opposite. This result is surprising to me
+      because I expected to see a clearer correlation between the two variables.
+      This result suggests that age is not a primary factor in determining the
+      distribution of housing types in a municipality. <br />
+    </p>
+
+    <h3>Summary</h3>
+    In this exploratory data analysis, I explored the spatial distribution of
+    family and nonfamily households across Greater Boston municipalities. I
+    first checked the data quality and found quite a few points of missing and
+    unreliable data. Then, I addressed my analysis questions by investigating
+    the distribution of family and nonfamily households. I found that the data
+    suggests family households concentrate further from urban cities than
+    nonfamily households do. While diving deeper to find a possible reason
+    behind this trend, I discovered that the relationship between elderly
+    population share and single-family zoning didn't show a strong pattern,
+    indicating that age alone can't determine housing form across
+    municipalities. Out of my exploratory analysis, I conclude that housing
+    patterns likely reflect a combination of historical development and access
+    to services rather than any single demographic factor.
+  </body>
 </html>
