@@ -267,8 +267,12 @@
         <h2>Final Visualization Design</h2>
 
         <figure>
-          <img src="IMAGE_FILENAME" alt="" />
-          <figcaption>BRIEF CAPTION HERE.</figcaption>
+          <img src="../images/A3(4).png" alt="" />
+          <figcaption>
+            Line graph showing new confirmed Covid-19 cases in the US from 2020
+            to 2022. With thickness and color hue of the lines representing
+            number of new deceased because of Covid-19 from 2020 to 2022.
+          </figcaption>
         </figure>
       </section>
 
@@ -276,15 +280,82 @@
         <h2>Final Writeup</h2>
 
         <p>
-          DESCRIBE YOUR RATIONALE TO JUSTIFY THE DECISIONS FOR YOUR FINAL
-          DESIGN. WHAT ARE YOU TRYING TO CONVEY, AND HOW DOES YOUR DESIGN
-          FACILITATE THIS?
+          I chose to build off of the line and area graph in sketch 1 for my
+          final design. Unlike the data from the original NYTimes graph, this
+          dataset includes the entire year of 2022. Therefore the tornado plot
+          (sketch 3) wouldn't work anymore. Finally, I like the line graph more
+          than the scatterplot, because it shows the trends within each month.
+          <br />
+          The aim of my visualization is to show the virulence of Covid-19, both
+          how quickly the virus spread and how fatal it was. I chose the two
+          measures to best represent this: New Confirmed and New Deceased. To
+          show Covid-19's transmissiblity, I used a line graph to depict how New
+          Confirmed cases changed from month to month. Condensing the data to be
+          just year to year wasn't enough to show the nauances of the trends,
+          and expanding the data to week to week elongated the graph until the
+          trends were also hard to visualize. I added additional grid lines
+          between the month in order to provide the readers an opportunity to
+          clearly observe the trends within a month too if they wished. I also
+          think additional grid lines help the reader compare and contrast the
+          degree of increase or decrease better than without them. <br />
+          Because the reader's eyes would likely focus on the biggest peak at
+          Jan 2022, making the other years seem less important as a result and
+          making it hard to visualizae the trends for all three years equally.
+          To combat this bias, I added the log trend line of New Confirmed for
+          each year. I chose log over linear because log could better summarize
+          the up and downs across the years. I used a dashed a lighter gray line
+          so it doesn't overpower the main line graph. <br />
+          In order to show how fatal Covid-19 was, I also felt that adding New
+          Deceased would help bolster my argument that Covid-19 was a dangerous
+          virus. Because I didn't want to crowd the space with multiple lines,
+          and I feel that newly confirmed cases were interconnected with newly
+          deceased cases as spread of the virus causes more people to be at risk
+          of dying, I decided to represent New Deceased without a separate line.
+          Instead, I used the thickness and color hue of the New Confirmed line.
+          I believe that using both thickness and color hue instead of only one
+          element helped bring more visual emphasis on the New Deceased data. As
+          the hue becomes more intense when the value of New Deceased gets big,
+          this also helps to lead the reader's eyes to the areas of the graph
+          where we see the biggest harm of Covid-19. Since neither axes show the
+          scale of the New Deceased data, the legend on the right is important
+          to understand what value different line thicknesess represent. <br />
+          I also decided to add annotations to the data points at the two peaks.
+          This helps the reader understand the scale of the data by seeing exact
+          numbers, and it also might aid the reader in understanding how to read
+          the graph. I considered that adding the values of New Deceased in the
+          annotations might be confusing if someone misses the legend, since the
+          numbers seem quite random and not on the same scale as the number of
+          New Confirmed. However, I included it in the annotation anyway because
+          having both New Confirmed and New Deceased values describes the data
+          point as a whole. Hiding or not including information might affect
+          this visualization's reliability or trust in the reader's perspective.
+          <br />
+          For further steps, I would've like to add some other line or visual
+          element to provide more context to put into perspective how many
+          people died from Covid-19. Data visualizations often take out the
+          emotional aspect, but the Covid-19 pandemic affected a lot of people
+          and families, I think more could be done to create emotion, empathy,
+          and maybe even regret that this pandemic had multiple devastating
+          periods because of weakening regulations too soon.
         </p>
 
         <p>
-          REFLECT ON HOW YOUR FINAL DESIGN DOES OR DOES NOT ADDRESS YOUR
-          ORIGINAL CRITIQUE. WHAT TENSIONS OR TRADEOFFS DID YOU ENCOUNTER? WHAT
-          DID NOT WORK OUT AS ANTICIPATED?
+          As I state in my original critique, I think my line graph
+          visualization is more easily understandable to the reader, because
+          people are used to reading chronologically from left to right, not in
+          a spiral order. I also improved on the lack of precisness of the area
+          under a line by adding annotions and multiple intervals on the y-axis.
+          The way I added new data (New Deceased) by varying thickness of the
+          line might cause exact valuesof New Confirmed being harder to read.
+          Another critique that I want to add of the original NYTimes graph is
+          that as I was trying to make sense of the trends, I was always trying
+          to remember which months are between the four labeled months. So
+          instead of making the reader ponder about which month comes before
+          April, I labeled every month on the x-axis. As a result, my graph does
+          take up more space and looks repetitive, but allows the reader to
+          focus more on the trends of the line. However, the spiral graph is
+          visually interesting and creative, while a line graph is pretty common
+          and not unique.
         </p>
       </section>
     </main>
